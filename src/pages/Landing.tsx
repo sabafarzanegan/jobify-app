@@ -5,7 +5,7 @@ function Landing() {
   return (
     <div className="w-full h-screen flex items-center justify-between gap-x-10 flex-wrap-reverse md:flex-nowrap">
       <div>
-        <img src={LandingImg} className="w-[600px] h-[500px]" />
+        <img src={LandingImg} className="w-[600px] h-[500px] rounded-lg" />
       </div>
       <div className="flex flex-col gap-y-4 items-center">
         <p className="text-base md:text-lg lg:text-xl font-semibold">

@@ -19,9 +19,17 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "../ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { AxiosError } from "axios";
+import { customFetch } from "@/lib/helper";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "@/Feature/user/userSlice";
+import { RootState } from "@/Store";
 
 function Loginform() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const form = useForm<z.infer<typeof LoginformSchema>>({
     resolver: zodResolver(LoginformSchema),
     defaultValues: {
@@ -29,8 +37,28 @@ function Loginform() {
       password: "",
     },
   });
-  function onSubmit(values: z.infer<typeof LoginformSchema>) {
+  async function onSubmit(values: z.infer<typeof LoginformSchema>) {
     console.log(values);
+    const email = values.email;
+    const password = values.password;
+    try {
+      const res = await customFetch.post("/auth/login", { email, password });
+      console.log(res.data.user.email);
+
+      if (res.status === 200) {
+        toast("ورود شماباموفقیت انجام شد", { position: "bottom-right" });
+        dispatch(loginUser(res?.data?.user));
+        navigate("/dashboard");
+      }
+    } catch (error) {
+      const errorMsg =
+        error instanceof AxiosError
+          ? error?.response?.data?.msg
+          : "ورود با شکست مواجه شد";
+      console.log(error);
+
+      toast.error(errorMsg, { position: "top-center" });
+    }
   }
 
   return (

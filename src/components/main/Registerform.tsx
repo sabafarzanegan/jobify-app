@@ -20,6 +20,9 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
+import { customFetch } from "@/lib/helper";
+import { toast } from "react-toastify";
+import { AxiosError } from "axios";
 
 function Registerform() {
   const form = useForm<z.infer<typeof RegisterformSchema>>({
@@ -30,8 +33,32 @@ function Registerform() {
       password: "",
     },
   });
-  function onSubmit(values: z.infer<typeof RegisterformSchema>) {
-    console.log(values);
+
+  async function onSubmit(values: z.infer<typeof RegisterformSchema>) {
+    const name = values.username;
+    const email = values.email;
+    const password = values.password;
+    try {
+      const res = await customFetch.post("/auth/register", {
+        name,
+        email,
+        password,
+      });
+      if (res.status === 201) {
+        toast.success("ثبت نام شما باموفیت انجام شد", {
+          position: "top-right",
+        });
+      }
+      console.log(res);
+    } catch (error) {
+      const errorMsg =
+        error instanceof AxiosError
+          ? error?.response?.data?.msg
+          : "Registration Failed";
+      console.log(error);
+
+      toast.error(errorMsg, { position: "top-center" });
+    }
   }
 
   return (
@@ -84,8 +111,11 @@ function Registerform() {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="text-white">
-              ثبت نام
+            <Button
+              disabled={form.formState.isSubmitting}
+              type="submit"
+              className="text-white">
+              {form.formState.isSubmitting ? "در حال ارسال" : "ثبت نام"}
             </Button>
           </form>
         </Form>

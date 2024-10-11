@@ -23,9 +23,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";
 import { customFetch } from "@/lib/helper";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginUser } from "@/Feature/user/userSlice";
-import { RootState } from "@/Store";
+import { useSelector } from "react-redux";
 
 function Loginform() {
   const navigate = useNavigate();
@@ -47,8 +47,8 @@ function Loginform() {
 
       if (res.status === 200) {
         toast("ورود شماباموفقیت انجام شد", { position: "bottom-right" });
-        dispatch(loginUser(res?.data?.user));
         navigate("/dashboard");
+        dispatch(loginUser(res?.data?.user));
       }
     } catch (error) {
       const errorMsg =

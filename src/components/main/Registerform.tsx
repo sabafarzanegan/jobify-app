@@ -23,8 +23,11 @@ import { Link } from "react-router-dom";
 import { customFetch } from "@/lib/helper";
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";
+import { useSelector } from "react-redux";
 
 function Registerform() {
+  const user = useSelector((state) => state.userReducer);
+  console.log(user);
   const form = useForm<z.infer<typeof RegisterformSchema>>({
     resolver: zodResolver(RegisterformSchema),
     defaultValues: {

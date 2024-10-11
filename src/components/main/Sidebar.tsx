@@ -1,4 +1,4 @@
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserRoundPen } from "lucide-react";
 import { CirclePlus } from "lucide-react";
 import { ListChecks } from "lucide-react";

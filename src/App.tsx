@@ -8,12 +8,20 @@ import Stats from "./pages/dashboard/Stats";
 import Alljobs from "./pages/dashboard/Alljobs";
 import Addjob from "./pages/dashboard/Addjob";
 import Profile from "./pages/dashboard/Profile";
+import PrivateRoute from "./components/main/PrivateRoute";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/dashboard" element={<Dashboard />}>
+
+      <Route
+        path="/dashboard"
+        element={
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        }>
         <Route index path="stats" element={<Stats />} />
         <Route path="all-jobs" element={<Alljobs />} />
         <Route path="add-job" element={<Addjob />} />

@@ -56,12 +56,10 @@ function Profile() {
         toast.success("به روز رسانی با موفقیت انجام شد", {
           position: "bottom-right",
         });
-        console.log("Update successful:", res.data.user);
       } else {
         toast.error("به روز رسانی با مشکل مواجه شد", {
           position: "bottom-right",
         });
-        console.log("Update failed with status:", res.status, res.statusText);
       }
     } catch (error) {
       const errorMsg =
@@ -135,7 +133,9 @@ function Profile() {
                 </FormItem>
               )}
             />
-            <Button type="submit">به روز رسانی</Button>
+            <Button type="submit">
+              {form.formState.isSubmitting ? "...در حال انجام" : "به روز رسانی"}
+            </Button>
           </form>
         </Form>
       </CardContent>

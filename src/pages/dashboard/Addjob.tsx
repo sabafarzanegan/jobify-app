@@ -14,20 +14,59 @@ import { addJobSchema } from "@/Utils/Type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { AxiosError } from "axios";
+import { toast } from "react-toastify";
+import { customFetch } from "@/lib/helper";
+import { useSelector } from "react-redux";
+import { RootState } from "@/Store";
 
 function Addjob() {
+  const { user } = useSelector((state: RootState) => state.userState);
   const form = useForm<z.infer<typeof addJobSchema>>({
     resolver: zodResolver(addJobSchema),
     defaultValues: {
       position: "",
       company: "",
       jobLocation: "",
-      jobType: "تمام وقت",
-      status: "مصاحبه",
+      jobType: "full-time",
+      status: "interview",
     },
   });
-  function onSubmit(values: z.infer<typeof addJobSchema>) {
+  async function onSubmit(values: z.infer<typeof addJobSchema>) {
     console.log(values);
+    try {
+      const res = await customFetch.post(
+        "/jobs",
+        {
+          position: values?.position,
+          company: values?.company,
+          jobLocation: values?.jobLocation,
+          jobType: values?.jobType,
+          status: values?.status,
+        },
+        {
+          headers: {
+            authorization: `Bearer ${user?.token}`,
+          },
+        }
+      );
+      if (res.status >= 200 && res.status < 300) {
+        toast.success("شغل با موفقیت اضافه شد", {
+          position: "bottom-right",
+        });
+      } else {
+        toast.error("لطفا دوباره تلاش کنید", {
+          position: "bottom-right",
+        });
+      }
+    } catch (error) {
+      const errorMsg =
+        error instanceof AxiosError
+          ? error?.response?.data?.msg
+          : "Registration Failed";
+      toast.error(errorMsg);
+      console.log(error);
+    }
   }
   return (
     <Card>
@@ -88,7 +127,7 @@ function Addjob() {
                       {...field}
                       value={field.value}
                       name="وضعیت"
-                      list={["مصاحبه", "رد شده", "درانتظار"]}
+                      list={["interview", "declined", "pending"]}
                       onChange={field.onChange}
                     />
                   </FormControl>
@@ -106,7 +145,7 @@ function Addjob() {
                       {...field}
                       value={field.value}
                       name="نوع کار"
-                      list={["تمام وقت", "باره وقت", "دورکاری", "کارآموزی"]}
+                      list={["full-time", "part-time", "remote", "internship"]}
                       onChange={field.onChange}
                     />
                   </FormControl>
@@ -115,7 +154,7 @@ function Addjob() {
               )}
             />
             <Button className="mt-8" type="submit">
-              ارسال
+              {form.formState.isSubmitting ? "...در حال ساختن" : "ساختن"}
             </Button>
           </form>
         </Form>

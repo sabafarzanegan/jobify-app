@@ -67,3 +67,12 @@ export const addJobSchema = z.object({
   jobType: z.string(),
   status: z.string(),
 });
+
+export type Job = {
+  position: string;
+  company: string;
+  jobLocation: string;
+  jobType: string;
+  status: string;
+  createdAt: string;
+};

@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { string, z } from "zod";
 
 const RegisterformSchema = z.object({
   username: z.string().min(2, {
@@ -49,4 +49,21 @@ export const LoginformSchema = z.object({
     .regex(/[@$!%*?&#]/, {
       message: "رمز عبور باید شامل (e.g., @$!%*?&#)باشد",
     }),
+});
+
+export const profileFormSchema = z.object({
+  name: z.string().min(2, { message: "اسم شما حداقل باید 2 حرف باشد" }),
+  lastName: z.string().min(4, { message: "اسم شما حداقل باید 4 حرف باشد" }),
+  email: z.string().email({
+    message: "ایمیل نامعتبر است",
+  }),
+  location: z.string(),
+});
+
+export const addJobSchema = z.object({
+  position: z.string().min(1, { message: "لطفا موقعیت شغلی خودرا وارد کنید" }),
+  company: z.string().min(1, { message: "لطفا نام شرکت را وارد کنید" }),
+  jobLocation: z.string().min(1, { message: "محل مکانی شرکت را وارد کنید" }),
+  jobType: z.string(),
+  status: z.string(),
 });

@@ -2,7 +2,6 @@ import { RootState } from "@/Store";
 import { ReactNode } from "react";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-import { toast } from "react-toastify";
 
 function PrivateRoute({ children }: { children: ReactNode }) {
   const user = useSelector((state: RootState) => state.userState);

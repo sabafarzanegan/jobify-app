@@ -75,4 +75,13 @@ export type Job = {
   jobType: string;
   status: string;
   createdAt: string;
+  _id: string;
 };
+
+// edit item
+// editJobId: _id,
+// position,
+// company,
+// jobLocation,
+// jobType,
+// status,

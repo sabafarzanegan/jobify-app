@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";
 import CardJob from "@/components/main/CardJob";
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+
 import { Job } from "@/Utils/Type";
 
 function Alljobs() {
@@ -37,8 +37,7 @@ function Alljobs() {
   };
   useEffect(() => {
     getAllJobs();
-    console.log(allJobs);
-  }, []);
+  }, [allJobs]);
 
   return (
     <section>

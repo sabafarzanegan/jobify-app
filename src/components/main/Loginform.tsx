@@ -98,7 +98,7 @@ function Loginform() {
               )}
             />
             <Button type="submit" className="text-white">
-              ورود
+              {form.formState.isSubmitting ? "..." : "ورود"}
             </Button>
           </form>
         </Form>

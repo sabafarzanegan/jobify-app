@@ -5,6 +5,10 @@ import moment from "moment";
 import { CalendarDays } from "lucide-react";
 import { Timer } from "lucide-react";
 import { Button } from "../ui/button";
+
+import Deletebtn from "./Deletebtn";
+import Editbbtn from "./Editbbtn";
+
 type jobProps = Job;
 function CardJob({
   company,
@@ -13,6 +17,7 @@ function CardJob({
   createdAt,
   jobType,
   status,
+  _id,
 }: jobProps) {
   return (
     <Card>
@@ -42,21 +47,24 @@ function CardJob({
             <span className="">{jobType}</span>
           </div>
           <div
-            className={`text-center inline-grid py-1 rounded-md font-semibold ${
-              status === "pending" && "bg-yellow-400"
-            } ${status === "interview" && "bg-blue-300"} ${
-              status === "Decline" && "bg-red-300"
-            } `}>
+            className={`text-center inline-grid py-1 rounded-md font-semibold 
+              ${status === "pending" && "bg-yellow-400"}
+             ${status === "interview" && "bg-blue-300"} 
+             ${status === "declined" && "bg-red-300"} `}>
             {status}
           </div>
         </div>
         <div className="mt-2 flex items-center gap-x-2">
-          <Button className="px-3 py-1" variant="destructive">
-            حذف
-          </Button>
-          <Button className="px-3 py-1" variant="outline">
-            اصلاح
-          </Button>
+          <Deletebtn id={_id} />
+          <Editbbtn
+            _id={_id}
+            status={status}
+            jobType={jobType}
+            createdAt={createdAt}
+            jobLocation={jobLocation}
+            company={company}
+            position={position}
+          />
         </div>
       </CardContent>
     </Card>

@@ -7,17 +7,35 @@ import { AxiosError } from "axios";
 import CardJob from "@/components/main/CardJob";
 
 import { Job } from "@/Utils/Type";
+import SearchContainer from "@/components/main/SearchContainer";
+import Pagination from "@/components/main/Pagination";
 
 function Alljobs() {
   const { user } = useSelector((state: RootState) => state.userState);
   const [allJobs, setAlljobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
+  const [pageData, setPagedata] = useState();
+  const [page, setPage] = useState(1);
+
+  const { search, status, type, sort } = useSelector(
+    (state: RootState) => state.jobState
+  );
+
+  const url =
+    "?status=${searchStatus}&jobType=${searchType}&sort=${sort}&page=${page}";
   const getAllJobs = async () => {
     try {
-      const res = await customFetch.get("/jobs", {
-        headers: { authorization: `Bearer ${user?.token}` },
-      });
+      const res = await customFetch.get(
+        `/jobs?status=${status}&jobType=${type}&sort=${sort}&page=${page}`,
+        {
+          headers: { authorization: `Bearer ${user?.token}` },
+        }
+      );
       if (res.status >= 200 && res.status < 300) {
+        // console.log(res.data);
+
+        setPagedata(res.data.numOfPages);
+
         setAlljobs(res.data.jobs);
       } else {
         toast.error("گرفتن داده با مشکل مواجه شد", {
@@ -41,6 +59,7 @@ function Alljobs() {
 
   return (
     <section>
+      <SearchContainer />
       <h2>شغل ها</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
         {loading ? (
@@ -49,6 +68,7 @@ function Alljobs() {
           allJobs.map((job) => <CardJob {...job} />)
         )}
       </div>
+      <Pagination numOfPages={pageData} page={page} setPage={setPage} />
     </section>
   );
 }

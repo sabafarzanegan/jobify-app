@@ -1,8 +1,8 @@
 type FormSelectType = {
   list: string[];
   name: string;
-  value: string;
-  onChange: () => void;
+  value: string | undefined;
+  onChange?: () => void;
 };
 function FormSelect({ list, name, value, onChange }: FormSelectType) {
   return (

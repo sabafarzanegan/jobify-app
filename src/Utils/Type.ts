@@ -93,3 +93,10 @@ export type Statstype = {
   defaultStats: DefaultStatsType;
   monthlyApplications: monthlyApplicationsType[];
 };
+
+export const filterSchema = z.object({
+  search: z.string().optional(),
+  status: z.string().optional(),
+  type: z.string().optional(),
+  sort: z.string().optional(),
+});

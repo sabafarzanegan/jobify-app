@@ -1,4 +1,4 @@
-import { string, z } from "zod";
+import { z } from "zod";
 
 const RegisterformSchema = z.object({
   username: z.string().min(2, {
@@ -78,10 +78,18 @@ export type Job = {
   _id: string;
 };
 
-// edit item
-// editJobId: _id,
-// position,
-// company,
-// jobLocation,
-// jobType,
-// status,
+export type DefaultStatsType = {
+  declined: number;
+  interview: number;
+  pending: number;
+};
+
+export type monthlyApplicationsType = {
+  count: number;
+  date: string;
+};
+
+export type Statstype = {
+  defaultStats: DefaultStatsType;
+  monthlyApplications: monthlyApplicationsType[];
+};

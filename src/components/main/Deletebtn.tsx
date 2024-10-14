@@ -14,6 +14,7 @@ import { RootState } from "@/Store";
 import { customFetch } from "@/lib/helper";
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";
+import { Trash } from "lucide-react";
 
 function Deletebtn({ id }: { id: string }) {
   const { user } = useSelector((state: RootState) => state.userState);
@@ -45,7 +46,10 @@ function Deletebtn({ id }: { id: string }) {
   return (
     <AlertDialog>
       <AlertDialogTrigger>
-        <Button variant="destructive">حذف</Button>
+        <Button variant="destructive" className="flex items-center gap-x-2">
+          <Trash className="w-3 h-3" />
+          <span>حذف</span>
+        </Button>
       </AlertDialogTrigger>
       <AlertDialogContent className="flex items-center justify-center">
         <AlertDialogHeader>

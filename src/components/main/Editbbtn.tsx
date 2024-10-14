@@ -25,7 +25,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/Store";
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";
-
+import { Pencil } from "lucide-react";
 type jobProps = Job;
 function Editbbtn({
   _id,
@@ -80,7 +80,10 @@ function Editbbtn({
   return (
     <Dialog>
       <DialogTrigger>
-        <Button variant="outline">اصلاح</Button>
+        <Button variant="outline" className="flex items-center gap-x-2">
+          <Pencil className="w-3 h-3" />
+          <span>اصلاح</span>
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

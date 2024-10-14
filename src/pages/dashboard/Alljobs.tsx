@@ -1,6 +1,6 @@
 import { customFetch } from "@/lib/helper";
 import { RootState } from "@/Store";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";

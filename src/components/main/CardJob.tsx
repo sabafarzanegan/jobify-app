@@ -4,7 +4,6 @@ import { MapPin } from "lucide-react";
 import moment from "moment";
 import { CalendarDays } from "lucide-react";
 import { Timer } from "lucide-react";
-import { Button } from "../ui/button";
 
 import Deletebtn from "./Deletebtn";
 import Editbbtn from "./Editbbtn";
@@ -48,9 +47,9 @@ function CardJob({
           </div>
           <div
             className={`text-center inline-grid py-1 rounded-md font-semibold 
-              ${status === "pending" && "bg-yellow-400"}
+              ${status === "pending" && "bg-yellow-500"}
              ${status === "interview" && "bg-blue-300"} 
-             ${status === "declined" && "bg-red-300"} `}>
+             ${status === "declined" && "bg-red-500"} `}>
             {status}
           </div>
         </div>

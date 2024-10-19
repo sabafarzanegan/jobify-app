@@ -16,7 +16,7 @@ function Sidebar() {
   const navigate = useNavigate();
 
   return (
-    <aside className="h-svh w-[300px] border-l px-2 relative">
+    <aside className="h-svh w-[300px] border-l px-2 relative hidden md:block">
       <ul className="flex flex-col gap-y-4 ">
         <li>
           <Link

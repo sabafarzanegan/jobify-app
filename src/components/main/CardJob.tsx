@@ -22,7 +22,7 @@ function CardJob({
     <Card>
       <CardHeader>
         <CardTitle className="flex items-start gap-x-4">
-          <p className=" px-6 py-3 rounded-md mb-3 bg-blue-600">
+          <p className=" px-6 py-3 rounded-md mb-3 bg-blue-600 text-white">
             {company.charAt(0)}
           </p>
           <div className="space-y-1">
@@ -32,7 +32,7 @@ function CardJob({
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="grid grid-cols-2 gap-y-2 text-">
+        <div className="grid grid-cols-2 gap-y-2 ">
           <div className="flex items-center gap-x-2">
             <MapPin className="w-4 h-4 text-gray-400" />
             <p>{jobLocation}</p>

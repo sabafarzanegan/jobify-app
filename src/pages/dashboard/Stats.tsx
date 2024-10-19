@@ -29,7 +29,7 @@ function Stats() {
   }, []);
   return (
     <section>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-center flex-wrap gap-x-5 gap-y-2 ">
         <StatsCard
           title="شغل های درحال انتظار"
           icon={<Luggage />}
@@ -51,6 +51,7 @@ function Stats() {
       </div>
       <main className="mt-4">
         <Button
+          className="bg-orange-500 text-white"
           onClick={() => {
             setBarchart((prev) => !prev);
           }}>

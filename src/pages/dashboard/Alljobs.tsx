@@ -17,12 +17,10 @@ function Alljobs() {
   const [pageData, setPagedata] = useState();
   const [page, setPage] = useState(1);
 
-  const { search, status, type, sort } = useSelector(
+  const { status, type, sort } = useSelector(
     (state: RootState) => state.jobState
   );
 
-  const url =
-    "?status=${searchStatus}&jobType=${searchType}&sort=${sort}&page=${page}";
   const getAllJobs = async () => {
     try {
       const res = await customFetch.get(

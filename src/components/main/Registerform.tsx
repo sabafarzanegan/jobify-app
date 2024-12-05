@@ -19,12 +19,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "../ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { customFetch } from "@/lib/helper";
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";
 
 function Registerform() {
+  const navigate = useNavigate();
   const form = useForm<z.infer<typeof RegisterformSchema>>({
     resolver: zodResolver(RegisterformSchema),
     defaultValues: {
@@ -48,6 +49,7 @@ function Registerform() {
         toast.success("ثبت نام شما باموفیت انجام شد", {
           position: "top-right",
         });
+        navigate("/login");
       }
       console.log(res);
     } catch (error) {

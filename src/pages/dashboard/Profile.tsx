@@ -18,11 +18,14 @@ import { profileFormSchema } from "@/Utils/Type";
 import { customFetch } from "@/lib/helper";
 import { AxiosError } from "axios";
 import { toast } from "react-toastify";
-import { loginUser } from "@/Feature/user/userSlice";
+import { loginUser, logoutUser } from "@/Feature/user/userSlice";
+import { useNavigate } from "react-router-dom";
+import { LogOut } from "lucide-react";
 
 function Profile() {
   const { user } = useSelector((state: RootState) => state.userState);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const form = useForm<z.infer<typeof profileFormSchema>>({
     resolver: zodResolver(profileFormSchema),
@@ -135,6 +138,19 @@ function Profile() {
             />
             <Button type="submit">
               {form.formState.isSubmitting ? "...در حال انجام" : "به روز رسانی"}
+            </Button>
+            <Button
+              onClick={() => {
+                dispatch(logoutUser());
+                navigate("/login");
+                toast("برای استفاده از سایت لطفا دوباره وارد شوید", {
+                  position: "top-center",
+                });
+              }}
+              variant="destructive"
+              className="w-full items-center justify-between">
+              <span>خروج کاربر</span>
+              <LogOut className="w-5 h-5" />
             </Button>
           </form>
         </Form>

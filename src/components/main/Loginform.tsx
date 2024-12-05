@@ -25,7 +25,6 @@ import { AxiosError } from "axios";
 import { customFetch } from "@/lib/helper";
 import { useDispatch } from "react-redux";
 import { loginUser } from "@/Feature/user/userSlice";
-import { useSelector } from "react-redux";
 
 function Loginform() {
   const navigate = useNavigate();

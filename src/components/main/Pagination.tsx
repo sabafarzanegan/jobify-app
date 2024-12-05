@@ -7,7 +7,7 @@ function Pagination({
   page,
   setPage,
 }: {
-  numOfPages: number | 1;
+  numOfPages: number | 1 | undefined;
   page: number | 1;
   setPage: (update: (prev: number) => number) => void;
 }) {
@@ -19,7 +19,7 @@ function Pagination({
           setPage((prev: number) => prev + 1);
           dispatch(handlePage(Number(page)));
         }}
-        disabled={page >= numOfPages}>
+        disabled={page >= (numOfPages ?? 0)}>
         بعدی
       </Button>
       <span>{page}</span>

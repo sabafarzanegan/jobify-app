@@ -20,18 +20,6 @@ function Sidebar() {
       <ul className="flex flex-col gap-y-4 ">
         <li>
           <Link
-            to="/dashboard/stats"
-            className={`flex items-center justify-between p-2  ${
-              location.pathname === "/dashboard/stats"
-                ? "bg-primary rounded-md dark:text-gray-950"
-                : ""
-            }`}>
-            <span>آمار</span>
-            <ChartNoAxesCombined className="w-5 h-5" />
-          </Link>
-        </li>
-        <li>
-          <Link
             to="/dashboard/profile"
             className={`flex items-center justify-between p-2  ${
               location.pathname === "/dashboard/profile"

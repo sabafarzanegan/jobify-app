@@ -46,7 +46,7 @@ function Loginform() {
 
       if (res.status === 200) {
         toast("ورود شماباموفقیت انجام شد", { position: "bottom-right" });
-        navigate("/dashboard");
+        navigate("/dashboard/all-jobs");
         dispatch(loginUser(res?.data?.user));
       }
     } catch (error) {

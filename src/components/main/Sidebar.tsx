@@ -2,7 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserRoundPen } from "lucide-react";
 import { CirclePlus } from "lucide-react";
 import { ListChecks } from "lucide-react";
-import { ChartNoAxesCombined } from "lucide-react";
+
 import { Button } from "../ui/button";
 import { LogOut } from "lucide-react";
 import { useDispatch } from "react-redux";

@@ -23,7 +23,7 @@ function App() {
           </PrivateRoute>
         }>
         <Route path="stats" element={<Stats />} />
-        <Route index path="all-jobs" element={<Alljobs />} />
+        <Route path="all-jobs" element={<Alljobs />} />
         <Route path="add-job" element={<Addjob />} />
         <Route path="profile" element={<Profile />} />
       </Route>

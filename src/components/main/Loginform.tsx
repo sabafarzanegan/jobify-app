@@ -32,8 +32,8 @@ function Loginform() {
   const form = useForm<z.infer<typeof LoginformSchema>>({
     resolver: zodResolver(LoginformSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: "saba.far.99@gmail.com",
+      password: "12345678#Aa",
     },
   });
   async function onSubmit(values: z.infer<typeof LoginformSchema>) {

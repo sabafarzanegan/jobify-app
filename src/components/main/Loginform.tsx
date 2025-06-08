@@ -61,7 +61,7 @@ function Loginform() {
   }
 
   return (
-    <Card className=" w-[60%] md:w-[50%] lg:w-[40%]">
+    <Card className=" w-[80%] md:max-w-[700px]">
       <CardHeader>
         <CardTitle>فرم ورود</CardTitle>
       </CardHeader>

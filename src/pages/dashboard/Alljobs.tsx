@@ -61,7 +61,7 @@ function Alljobs() {
       <h2>شغل ها</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
         {loading ? (
-          <div className="flex items-center justify-center loader"></div>
+          <div className="flex items-center justify-center loader w-full mx-auto "></div>
         ) : (
           allJobs.map((job) => <CardJob {...job} />)
         )}

@@ -5,10 +5,13 @@ function Landing() {
   return (
     <div className="w-full h-screen flex items-center justify-between gap-x-10 flex-wrap-reverse md:flex-nowrap">
       <div>
-        <img src={LandingImg} className="w-[600px] h-[500px] rounded-lg" />
+        <img
+          src={LandingImg}
+          className="mx-auto w-[600px] h-[600px] rounded-lg"
+        />
       </div>
-      <div className="flex flex-col gap-y-4 items-center">
-        <p className="text-base md:text-lg lg:text-xl font-semibold">
+      <div className="flex flex-col gap-y-4 items-center justify-center w-full">
+        <p className="text-base md:text-lg lg:text-xl font-semibold text-center w-full">
           موقعیت های شغلی موردنظر خودرا ذخیره کنید.
         </p>
         <div>
